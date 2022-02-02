@@ -32,7 +32,7 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 java {
@@ -42,12 +42,12 @@ java {
 
 checkstyle {
     toolVersion "8.35"
-    configDir rootProject.file("checkstyle/")
+    configDirectory.set(rootProject.file("checkstyle/"))
     println configFile
 }
 
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "0.8.7"
 }
 
 distributions {
@@ -100,6 +100,10 @@ publishing {
     }
 }
 
+test {
+    jvmArgs '--add-opens=java.base/jdk.internal.module=ALL-UNNAMED'
+}
+
 ext {
     kafkaVersion = "2.2.0"
     slf4jVersion = "1.7.25"
@@ -118,17 +122,17 @@ dependencies {
     implementation "com.google.guava:guava:27.1-jre"
     implementation "org.slf4j:slf4j-api:$slf4jVersion"
 
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.easymock:easymock:4.0.1"
-    testImplementation "org.powermock:powermock-module-junit4:2.0.0"
-    testImplementation "org.powermock:powermock-api-easymock:2.0.0"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.easymock:easymock:4.3'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.powermock:powermock-api-easymock:2.0.9'
     testImplementation "org.mockito:mockito-all:1.10.19"
     testImplementation "org.apache.kafka:connect-api:$kafkaVersion"
     testImplementation "commons-io:commons-io:2.6"
     testImplementation "org.apache.derby:derby:10.11.1.1"
-    testRuntime "org.slf4j:slf4j-log4j12:$slf4jVersion"
     testImplementation 'org.assertj:assertj-core:3.19.0'
 
+    testRuntimeOnly "org.slf4j:slf4j-log4j12:$slf4jVersion"
 }
 
 processResources {
