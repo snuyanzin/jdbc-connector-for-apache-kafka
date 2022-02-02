@@ -47,7 +47,7 @@ checkstyle {
 }
 
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "0.8.7"
 }
 
 distributions {
@@ -120,8 +120,8 @@ dependencies {
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.easymock:easymock:4.0.1"
-    testImplementation "org.powermock:powermock-module-junit4:2.0.0"
-    testImplementation "org.powermock:powermock-api-easymock:2.0.0"
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.powermock:powermock-api-easymock:2.0.9'
     testImplementation "org.mockito:mockito-all:1.10.19"
     testImplementation "org.apache.kafka:connect-api:$kafkaVersion"
     testImplementation "commons-io:commons-io:2.6"
